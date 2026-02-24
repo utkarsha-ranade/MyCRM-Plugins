@@ -37,11 +37,17 @@ namespace MyPlugins
                 {
                     // Plug-in business logic goes here.
                     // Retrive the Form Attribute Values
-                    string firstName = entity.Attributes["firstname"].ToString();
+                    string firstName = string.Empty;
+
+                    if(entity.Attributes.Contains("firstname"))
+                    {
+                        firstName = entity.Attributes["firstname"].ToString();
+                    }
+
                     string lastName = entity.Attributes["lastname"].ToString();
 
                     // Assign Data to Attributes
-                    entity.Attributes.Add("description", "Hello World" + firstName + lastName);
+                    entity.Attributes.Add("description", "Hello World " + firstName + lastName);
                 }
 
                 catch (FaultException<OrganizationServiceFault> ex)
